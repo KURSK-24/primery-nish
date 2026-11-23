@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Кто выбирает «не того»</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#fbf6f5;--card:#fff;--line:#efdfe0;--text:#2e1c22;--muted:#7d6670;--accent:#8e3b54;--soft:#f7e8ec}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.proto{background:#5e2236;color:#fff;text-align:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:7px 16px}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
+header{display:flex;align-items:center;gap:12px;padding:20px 0 8px}
+header img{width:52px;height:52px;border-radius:50%;object-fit:cover}
+header b{display:block;font-size:15px}
+header span{color:var(--muted);font-size:13px}
+.hero{margin-top:12px;border-radius:20px;background:linear-gradient(160deg,#a14a64,#6e2a40);color:#fff;padding:26px 20px 24px}
+.hero small{letter-spacing:.1em;text-transform:uppercase;font-size:12px;opacity:.8}
+.hero h1{font-size:29px;line-height:1.13;margin:8px 0 10px}
+.hero p{opacity:.92;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.chips span{background:rgba(255,255,255,.16);border-radius:20px;padding:4px 10px;font-size:12px}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:17px 18px;font-size:17px;font-weight:700;cursor:pointer;background:var(--accent);color:#fff;text-align:center;text-decoration:none;margin-top:16px}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:500}
+.btn.sm{padding:12px;font-size:15px;margin-top:12px}
+.btn.alt{background:#fff;color:var(--accent);border:1.5px solid var(--accent)}
+.note{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
+.screen{display:none}.screen.on{display:block;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.bar{height:4px;background:var(--line);border-radius:4px;margin:22px 0 16px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.qn{color:var(--muted);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.q{font-size:23px;line-height:1.22;margin:6px 0 16px}
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:14px;padding:14px 16px;font-size:16px;margin-bottom:10px;cursor:pointer}
+.opt:hover,.opt:focus-visible{border-color:var(--accent);outline:none}
+.opt.sel{border-color:var(--accent);background:var(--soft)}
+.backb{background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer;padding:6px 0}
+.res-k{color:var(--accent);font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-top:24px}
+.res-h{font-size:28px;line-height:1.15;margin:6px 0 10px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:14px}
+.box h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.box p+p{margin-top:8px}
+.quote{border-left:3px solid var(--accent);padding-left:12px;font-style:italic;color:#4d3540;margin:8px 0}
+.meter{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.mrow{display:grid;grid-template-columns:1fr 46%;gap:10px;align-items:center;font-size:14px}
+.mrow i{display:block;height:8px;border-radius:6px;background:var(--soft);overflow:hidden}
+.mrow i b{display:block;height:100%;background:var(--accent);border-radius:6px;transition:width .6s}
+.step{display:none}.step.on{display:block;animation:in .3s ease}
+.stn{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.say{background:var(--soft);border-radius:12px;padding:14px;margin:10px 0;font-size:17px;line-height:1.35}
+.say s{color:var(--muted)}
+.body{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.body button{border:1px solid var(--line);background:#fff;border-radius:20px;padding:8px 14px;font-size:15px;cursor:pointer;color:var(--text)}
+.body button.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+.self{text-align:center;padding:8px 0}
+.self .glow{width:90px;height:90px;border-radius:50%;margin:6px auto 12px;background:radial-gradient(circle,#ffd9c7 0%,#e9a2b1 55%,rgba(233,162,177,0) 72%);animation:glow 3.5s ease-in-out infinite}
+@keyframes glow{50%{transform:scale(1.15)}}
+.stages{list-style:none;margin-top:8px}
+.stages li{padding:9px 12px;border:1px solid var(--line);border-radius:12px;margin-bottom:6px;cursor:pointer;font-size:15px}
+.stages li.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+.stmsg{font-weight:600;color:var(--accent);margin-top:6px;min-height:22px}
+.price{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.price b{font-size:18px}.price span{font-size:21px;color:var(--accent);font-weight:800;white-space:nowrap}
+.list{list-style:none}.list li{padding:5px 0 5px 20px;position:relative}.list li:before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+.teaser .tt{display:block;font-size:19px;line-height:1.25;margin-bottom:8px}
+.blur{position:relative;margin-top:8px}
+.blur p{filter:blur(5px);user-select:none;-webkit-user-select:none}
+.lock{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-weight:700;color:var(--accent);background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.88) 40%);padding:10px}
+.tag{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--soft);color:var(--accent);border:1px dashed #d59aab;border-radius:6px;padding:3px 7px;margin-top:10px}
+.safe{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
+footer{border-top:1px solid var(--line);margin-top:36px;padding-top:18px;color:var(--muted);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<div class="proto">Прототип лид-магнита для Елены · собран «Средой продаж»</div>
+<div class="wrap">
+  <header>
+    <img src="img/ava.jpg" alt="Елена Герасимова" width="52" height="52">
+    <div><b>Елена Герасимова · психолог, IFS-терапевт</b><span>Отношения без боли</span></div>
+  </header>
+
+  <section class="screen on" id="s0">
+    <div class="hero">
+      <small>Тест на 2 минуты · подход IFS</small>
+      <h1>Какая ваша часть снова выбирает «не того»</h1>
+      <p>Меняются мужчины, а сценарий повторяется. Ответьте на 6 вопросов и узнайте, какой Защитник внутри ведёт вас в знакомые отношения, кого он бережёт и как с ним поговорить прямо сейчас</p>
+      <div class="chips"><span>Рационализатор</span><span>Спасатель</span><span>Критик</span><span>«Замри»</span><span>Страх близости</span></div>
+    </div>
+    <button class="btn" onclick="start()">Пройти тест</button>
+    <p class="note">В IFS нет «плохих» частей. Это не диагноз, а знакомство с собой</p>
+  </section>
+
+  <section class="screen" id="sq">
+    <div class="bar"><i id="prog"></i></div>
+    <div class="qn" id="qn"></div>
+    <h2 class="q" id="qt"></h2>
+    <div id="opts"></div>
+    <button class="backb" onclick="prev()">← назад</button>
+  </section>
+
+  <section class="screen" id="sr">
+    <div class="res-k">Чаще всего у руля</div>
+    <h2 class="res-h" id="rh"></h2>
+    <p class="quote" id="rq"></p>
+    <p id="rd"></p>
+
+    <div class="box"><h3>Кого она бережёт</h3><p id="rp"></p></div>
+
+    <div class="box"><h3>Ваша внутренняя команда</h3>
+      <div class="meter" id="meter"></div>
+    </div>
+
+    <div class="box" id="practice"><h3>Практика «Шаг назад» · 2 минуты</h3>
+      <div class="step on" id="p1"><div class="stn">Шаг 1 из 3</div>
+        <p>Произнесите про себя не так, как обычно, а по-новому. Почувствуйте разницу</p>
+        <div class="say"><s id="pold"></s><br>→ <b id="pnew"></b></div>
+        <button class="btn sm" onclick="pstep(2)">Произнесла</button>
+      </div>
+      <div class="step" id="p2"><div class="stn">Шаг 2 из 3</div>
+        <p>Где в теле вы чувствуете эту часть, когда она говорит?</p>
+        <div class="body" id="bodyb"></div>
+        <p id="bodyt" style="margin-top:10px"></p>
+        <button class="btn sm" id="b2" style="display:none" onclick="pstep(3)">Дальше</button>
+      </div>
+      <div class="step" id="p3"><div class="stn">Шаг 3 из 3</div>
+        <p>Спросите её мягко: «Чего ты боишься, если перестанешь так делать?» Часто она отвечает так:</p>
+        <div class="say" id="pfear"></div>
+        <button class="btn sm" onclick="pstep(4)">Услышала</button>
+      </div>
+      <div class="step" id="p4"><div class="self"><div class="glow"></div>
+        <p><b>Та, кто сейчас смотрит на эту часть с интересом, а не с осуждением, это вы</b></p>
+        <p style="margin-top:6px">В IFS это состояние называют Self: тишина, ясность, спокойствие</p><p class="quote" style="text-align:left">«Я - это не моя тревога и не моя боль. Во мне есть взрослая, устойчивая часть, которая может со всем справиться»</p></div>
+      </div>
+    </div>
+
+    <div class="box"><h3>1 · Сценарий повторяется не случайно</h3>
+      <p>Отметьте, где вы сейчас:</p>
+      <ul class="stages" id="stages"></ul>
+      <p class="stmsg" id="stmsg"></p>
+    </div>
+
+    <div class="box"><h3>2 · Почему «больше никогда» не работает</h3>
+      <p>Чтобы изменить сценарий, недостаточно составить список «красных флагов» или пообещать себе «больше никогда». Защитник, который у вас у руля, сильнее обещаний: он уверен, что спасает вас от боли, и снова выберет знакомое</p>
+      <p>Бороться с ним бесполезно. Его нужно услышать, понять, какую потребность вы закрываете через эти отношения, и увидеть, в какой момент вы перестаёте выбирать себя</p>
+    </div>
+
+    <div class="box"><h3>3 · С чего начать</h3>
+      <div class="price"><b>Воркбук «Аудит прошлых отношений: почему я выбираю «не тех»»</b><span>1 990 ₽</span></div>
+      <ul class="list" style="margin-top:10px"><li>рабочая тетрадь, 19 страниц: карта ваших прошлых отношений</li><li>4 аудиопрактики голосом Елены: знакомство с частью, которая хочет близости, и с той, которая её боится</li><li>личный список «красных» и «зелёных» флагов</li><li>внутри промокод на бесплатную консультацию</li></ul>
+      <a class="btn" href="https://t.me/lenageras_coach?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9F%D1%80%D0%BE%D1%88%D0%BB%D0%B0%20%D1%82%D0%B5%D1%81%D1%82%20%D0%BF%D1%80%D0%BE%20%D1%87%D0%B0%D1%81%D1%82%D0%B8.%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B2%D0%BE%D1%80%D0%BA%D0%B1%D1%83%D0%BA%20%C2%AB%D0%90%D1%83%D0%B4%D0%B8%D1%82%20%D0%BF%D1%80%D0%BE%D1%88%D0%BB%D1%8B%D1%85%20%D0%BE%D1%82%D0%BD%D0%BE%D1%88%D0%B5%D0%BD%D0%B8%D0%B9%C2%BB" target="_blank" rel="noopener">Забрать воркбук</a>
+      <div class="box" style="background:var(--soft);border:0;margin-top:14px"><h3>Или сразу диагностика</h3>
+        <p>Бесплатная онлайн-встреча 30-40 минут. Без погружения в травмы: найдём, кто у руля, сделаем шаг назад и почувствуем контакт с Self</p>
+        <a class="btn alt sm" href="https://t.me/lenageras_coach?text=%D0%94%D0%98%D0%90%D0%93%D0%9D%D0%9E%D0%A1%D0%A2%D0%98%D0%9A%D0%90" target="_blank" rel="noopener">Написать «ДИАГНОСТИКА»</a>
+      </div>
+    </div>
+
+    <div class="box teaser"><h3>Статья Елены</h3>
+      <b class="tt">Как разорвать повторяющийся сценарий в отношениях. Спойлер: списка «красных флагов» недостаточно</b>
+      <p>Одна ваша часть может отчаянно хотеть любви и близости. А другая панически бояться их, потому что когда-то близость сопровождалась болью, отвержением, холодом или потерей себя</p>
+      <div class="blur"><p>И тогда эта защитная часть выбирает эмоционально недоступного партнёра, потому что знакомая дистанция бессознательно воспринимается как более безопасная. Чтобы изменить этот сценарий, важно бережно пойти вглубь: услышать свои части и понять, какую потребность вы пытаетесь закрыть</p>
+        <div class="lock">🔒 Продолжение придёт в личку после теста</div>
+      </div>
+    </div>
+
+    <span class="tag">в рабочей версии: результат и часть приходят Елене, через 2 дня бот присылает аудиопрактику её голосом и приглашает на диагностику</span>
+    <button class="btn ghost" onclick="show('s0')">Пройти ещё раз</button>
+    <p class="safe">Если рядом с партнёром вам опасно, не оставайтесь с этим одна. Всероссийский телефон доверия для женщин: 8-800-7000-600</p>
+  </section>
+
+  <footer>Это прототип: части, формулировки и практика взяты из постов канала Елены, тексты черновые</footer>
+</div>
+
+<script>
+var P={
+ rat:{n:'Рационализатор',q:'«Ну, у всех бывают проблемы. Он же не бьёт меня. У него просто стресс на работе»',d:'Эта часть включается после каждой обиды и сглаживает углы. Она обесценивает ваш ущерб и находит объяснение любому поступку партнёра. Вы видите тревожные сигналы, но она убеждает, что всё не так плохо',p:'Она бережёт вас от встречи с пугающей правдой: отношения разрушены. А глубже защищает Изгнанника, маленькую часть, для которой остаться одной страшнее, чем терпеть знакомое',old:'Да ничего страшного, он просто устал',nw:'Часть меня очень хочет верить, что всё в порядке',f:'«Если я перестану объяснять, придётся признать, что тебе больно. И что-то решать»'},
+ res:{n:'Спасатель, или «Хорошая девочка»',q:'«Если я буду лучше готовить, меньше спорить, стану понимающей и удобной, он изменится»',d:'Эта часть искренне верит, что всё зависит от вас. Чем сильнее партнёр отдаляется, тем больше она старается. Вы подстраиваетесь, молчите о своих потребностях и пытаетесь заслужить любовь',p:'Она даёт вам иллюзию контроля: если всё зависит от меня, я могу это исправить. А защищает Изгнанника, которого когда-то любили только за то, что он «хороший»',old:'Я должна больше стараться',nw:'Часть меня боится, что меня не за что любить, если я перестану стараться',f:'«Если ты перестанешь быть удобной, тебя бросят»'},
+ cri:{n:'Внутренний Критик',q:'«Кому ты нужна? Ты сама ничего не можешь. Терпи»',d:'Да, Критик тоже Защитник. Он пугает вас внешним миром, чтобы вы сидели тихо и не совершали резких движений. Рядом с ним вы соглашаетесь на меньшее, лишь бы не потерять то, что есть',p:'Он охраняет Изгнанника с убеждением «я не достойна любви просто так». Ему кажется, что лучше вовремя «опустить» вас, чем дать снова надеяться и разочароваться',old:'Кому я ещё нужна',nw:'Часть меня говорит, что я не нужна. Я её слышу',f:'«Если ты поверишь, что достойна большего, и снова не получится, ты не выдержишь»'},
+ frz:{n:'Пожарный в режиме «Замри»',q:'«Я как будто в тумане. Не злюсь, не плачу, просто ничего»',d:'Когда боли слишком много, включается Пожарный. Он отключает чувства и тело: вы перестаёте ощущать гнев и масштаб происходящего. Это помогает выжить в моменте, но это же мешает уйти',p:'Его задача любой ценой не допустить непереносимую боль. Он защищает раненую детскую часть, которой когда-то было слишком страшно',old:'Мне всё равно',nw:'Часть меня отключила чувства, чтобы мне не было больно',f:'«Если я снова включу чувства, боль тебя накроет»'},
+ dis:{n:'Часть, которая боится близости',q:'«Спокойный и заботливый? Скучно. А вот тот, чьё внимание надо заслужить…»',d:'Одна ваша часть хочет любви и близости, а эта панически их боится. Поэтому выбирает эмоционально недоступных: знакомая дистанция кажется ей безопаснее. Спокойный человек рядом с ней выглядит «слишком простым»',p:'Когда-то близость была связана с ожиданием, тревогой или холодом. Эта часть бережёт вас от повторения той боли и надеется: «В этот раз меня всё-таки выберут»',old:'Опять я выбрала не того',nw:'Часть меня выбирает знакомую дистанцию, потому что так ей безопаснее',f:'«Если подпустить близко, тебя снова оставят. Издалека не так больно»'}
+};
+var Q=[
+ {t:'Партнёр вас обидел. Что вы чаще всего думаете потом?',o:[['«У него просто тяжёлый день»','rat'],['«Наверное, я что-то сделала не так»','res'],['«А чего я ждала. Кому я ещё нужна»','cri'],['Ничего не думаю, как будто в тумане','frz']]},
+ {t:'Кто вас обычно притягивает?',o:[['Тот, кого нужно понять, поддержать, спасти','res'],['Холодный, недоступный, его внимание надо заслужить','dis'],['Тот, кто выбрал меня первым. Выбирать не приходится','cri'],['Тот, кто красиво говорит о будущем, и я верю','rat']]},
+ {t:'Когда в отношениях становится плохо, вы…',o:[['Стараюсь больше: подстраиваюсь, молчу о своём','res'],['Объясняю себе, что у всех так бывает','rat'],['Замираю: ни уйти, ни поговорить','frz'],['Отдаляюсь сама, как только он становится ближе','dis']]},
+ {t:'Подруга говорит: «Уходи от него». Что внутри?',o:[['«Ты не знаешь, каким он бывает хорошим»','rat'],['«Одна я не справлюсь»','cri'],['«Если уйду, значит, я не смогла»','res'],['Пусто. Я даже не злюсь','frz']]},
+ {t:'Что для вас сложнее всего?',o:[['Сказать о своих потребностях','res'],['Поверить, что меня можно выбрать просто так','cri'],['Остаться, когда рядом спокойно и тепло','dis'],['Понять, что я сама сейчас чувствую','frz']]},
+ {t:'После расставания вы обычно…',o:[['Обещаю «больше никогда», и снова туда же','dis'],['Думаю «сама виновата»','cri'],['Говорю себе, что было не так уж плохо','rat'],['Долго живу как во сне','frz']]}
+];
+var ST=['Меня привлекает человек с определёнными чертами','Я замечаю тревожные сигналы, но нахожу им объяснение','Подстраиваюсь и меньше говорю о своих потребностях','Чем сильнее он отдаляется, тем больше я стараюсь','Отношения стали источником тревоги','После расставания обещаю себе не повторять','История начинается заново, в других декорациях'];
+var i=0,ans=[];
+function show(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on')});document.getElementById(id).classList.add('on');window.scrollTo(0,0)}
+function start(){i=0;ans=[];render();show('sq')}
+function render(){var q=Q[i];document.getElementById('qn').textContent='Вопрос '+(i+1)+' из '+Q.length;document.getElementById('qt').textContent=q.t;document.getElementById('prog').style.width=(i/Q.length*100)+'%';var o=document.getElementById('opts');o.innerHTML='';q.o.forEach(function(x){var b=document.createElement('button');b.className='opt';b.textContent=x[0];b.onclick=function(){ans[i]=x[1];i++;if(i<Q.length)render();else result()};o.appendChild(b)})}
+function prev(){if(i>0){i--;render()}else show('s0')}
+function result(){
+ var c={rat:0,res:0,cri:0,frz:0,dis:0};ans.forEach(function(k){c[k]++});
+ var keys=Object.keys(c).sort(function(a,b){return c[b]-c[a]||ans.indexOf(a)-ans.indexOf(b)});
+ var a=P[keys[0]];
+ document.getElementById('rh').textContent=a.n;document.getElementById('rq').textContent=a.q;
+ document.getElementById('rd').textContent=a.d;document.getElementById('rp').textContent=a.p;
+ var m=document.getElementById('meter');m.innerHTML='';
+ keys.forEach(function(k){var r=document.createElement('div');r.className='mrow';r.innerHTML='<span>'+P[k].n+'</span><i><b style="width:0"></b></i>';m.appendChild(r);setTimeout(function(){r.querySelector('b').style.width=Math.max(6,c[k]/6*100)+'%'},150)});
+ document.getElementById('pold').textContent='«'+a.old+'»';document.getElementById('pnew').textContent='«'+a.nw+'»';document.getElementById('pfear').textContent=a.f;
+ var bb=document.getElementById('bodyb');bb.innerHTML='';document.getElementById('bodyt').textContent='';document.getElementById('b2').style.display='none';
+ ['в горле','в груди','в животе','в плечах','не чувствую'].forEach(function(t){var b=document.createElement('button');b.textContent=t;b.onclick=function(){bb.querySelectorAll('button').forEach(function(x){x.classList.remove('sel')});b.classList.add('sel');document.getElementById('bodyt').textContent=t=='не чувствую'?'Это тоже ответ. Возможно, часть пока не готова показываться, и это нормально. Просто побудьте рядом':'Положите туда ладонь и поблагодарите её. Много лет она пыталась вас уберечь теми способами, которые знала';document.getElementById('b2').style.display='block'};bb.appendChild(b)});
+ pstep(1);
+ var s=document.getElementById('stages');s.innerHTML='';document.getElementById('stmsg').textContent='';
+ ST.forEach(function(t,n){var li=document.createElement('li');li.textContent=(n+1)+'. '+t;li.onclick=function(){s.querySelectorAll('li').forEach(function(x){x.classList.remove('sel')});li.classList.add('sel');document.getElementById('stmsg').textContent=n<6?'Дальше по сценарию: «'+ST[n+1].toLowerCase()+'». Круг можно разорвать на любом этапе':'Круг замкнулся. Сценарий можно изменить, когда он перестаёт быть невидимым'};s.appendChild(li)});
+ show('sr')}
+function pstep(n){for(var k=1;k<=4;k++)document.getElementById('p'+k).classList.toggle('on',k==n)}
+</script>
+</body>
+</html>

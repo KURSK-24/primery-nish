@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Терпеть или уйти?</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#fcf5f5;--card:#fff;--line:#f1dfe1;--text:#33252a;--muted:#86707a;--accent:#c0607a;--soft:#f9e9ec}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.proto{background:#e9bcc6;color:#5b2a36;text-align:center;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:9px 16px}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
+header{display:flex;align-items:center;gap:12px;padding:20px 0 8px}
+header img{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none}
+.photo{display:block;width:100%;height:300px;object-fit:cover;object-position:50% 20%;border-radius:20px 20px 0 0;margin-top:12px}
+.photo+.hero{margin-top:0;border-radius:0 0 20px 20px}
+.mini{display:flex;gap:12px;align-items:center;margin-bottom:10px}.mini img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 20%}
+header b{display:block;font-size:15px}
+header span{color:var(--muted);font-size:13px}
+.hero{margin-top:12px;border-radius:20px;background:linear-gradient(160deg,#cf8597,#a24d66);color:#fff;padding:26px 20px 24px}
+.hero small{letter-spacing:.1em;text-transform:uppercase;font-size:12px;opacity:.8}
+.hero h1{font-size:30px;line-height:1.12;margin:8px 0 10px}
+.hero p{opacity:.92;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.chips span{background:rgba(255,255,255,.16);border-radius:20px;padding:4px 10px;font-size:12px}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:17px 18px;font-size:17px;font-weight:700;cursor:pointer;background:var(--accent);color:#fff;text-align:center;text-decoration:none;margin-top:16px}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:500}
+.btn.sm{padding:12px;font-size:15px;margin-top:12px}
+.btn.alt{background:#fff;color:var(--accent);border:1.5px solid var(--accent)}
+.note{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
+.screen{display:none}.screen.on{display:block;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.bar{height:4px;background:var(--line);border-radius:4px;margin:22px 0 16px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.qn{color:var(--muted);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.q{font-size:22px;line-height:1.24;margin:6px 0 16px}
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:14px;padding:14px 16px;font-size:16px;margin-bottom:10px;cursor:pointer}
+.opt:hover,.opt:focus-visible{border-color:var(--accent);outline:none}
+.backb{background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer;padding:6px 0}
+.res-k{color:var(--accent);font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-top:24px}
+.res-h{font-size:28px;line-height:1.15;margin:6px 0 10px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:14px}
+.box h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.box p+p{margin-top:8px}
+.quote{border-left:3px solid var(--accent);padding-left:12px;font-style:italic;color:#5a3d47;margin:8px 0}
+.meter{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.mrow{display:grid;grid-template-columns:1fr 46%;gap:10px;align-items:center;font-size:14px}
+.mrow i{display:block;height:8px;border-radius:6px;background:var(--soft);overflow:hidden}
+.mrow i b{display:block;height:100%;background:var(--accent);border-radius:6px;transition:width .6s}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+.chk:last-of-type{border-bottom:0}
+.chk p{flex:1;font-size:15px}
+.yn{display:flex;gap:6px;flex:none}
+.yn button{border:1px solid var(--line);background:#fff;border-radius:20px;padding:6px 12px;font-size:14px;cursor:pointer;color:var(--text)}
+.yn button.sel{background:var(--accent);color:#fff;border-color:var(--accent)}
+.verdict{font-weight:600;color:var(--accent);margin-top:10px;min-height:22px}
+.price{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.price b{font-size:18px}.price span{font-size:21px;color:var(--accent);font-weight:800;white-space:nowrap}
+.list{list-style:none}.list li{padding:5px 0 5px 20px;position:relative}.list li:before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+.teaser .tt{display:block;font-size:19px;line-height:1.25;margin-bottom:8px}
+.blur{position:relative;margin-top:8px}
+.blur p{filter:blur(5px);user-select:none;-webkit-user-select:none}
+.lock{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-weight:700;color:var(--accent);background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.9) 40%);padding:10px}
+.tag{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--soft);color:var(--accent);border:1px dashed #e0a3b1;border-radius:6px;padding:3px 7px;margin-top:10px}
+.safe{font-size:13px;color:var(--muted);margin-top:14px;text-align:center}
+footer{border-top:1px solid var(--line);margin-top:36px;padding-top:18px;color:var(--muted);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<div class="proto">Это прототип · лид-магнит для Юлии собран «Средой продаж»</div>
+<div class="wrap">
+  <header>
+    <img src="img/ava.jpg" alt="Юлия Солодовникова" width="52" height="52">
+    <div><b>Юлия Солодовникова · психолог</b><span>Эмоции. Тело. Опора.</span></div>
+  </header>
+
+  <section class="screen on" id="s0">
+    <img class="photo" src="img/yulia.jpg" alt="Юлия Солодовникова">
+    <div class="hero">
+      <small>Тест на 3 минуты · про ваши отношения</small>
+      <h1>Терпеть или уйти?</h1>
+      <p>Вчера хотелось уйти, а сегодня он обнял, и внутри уже отпустило. Ответьте честно на 7 вопросов и узнайте, по какому кругу вы ходите в этих отношениях и что вас в нём держит</p>
+      <div class="chips"><span>Круг примирений</span><span>Удобная</span><span>Жизнь в напряжении</span><span>Любовь за двоих</span></div>
+    </div>
+    <button class="btn" onclick="start()">Пройти тест</button>
+    <p class="note">Отвечайте так, как есть, а не так, как правильно. Ответы видите только вы</p>
+  </section>
+
+  <section class="screen" id="sq">
+    <div class="bar"><i id="prog"></i></div>
+    <div class="qn" id="qn"></div>
+    <h2 class="q" id="qt"></h2>
+    <div id="opts"></div>
+    <button class="backb" onclick="prev()">← назад</button>
+  </section>
+
+  <section class="screen" id="sr">
+    <div class="res-k">Ваш круг</div>
+    <h2 class="res-h" id="rh"></h2>
+    <p class="quote" id="rq"></p>
+    <p id="rd"></p>
+
+    <div class="box"><h3>Чем вы за это платите</h3><p id="rp"></p></div>
+
+    <div class="box"><h3>Как распределились ваши ответы</h3>
+      <div class="meter" id="meter"></div>
+    </div>
+
+    <div class="box"><h3>Проверка: облегчение или перемены?</h3>
+      <p>Вспомните последнее примирение и ответьте честно</p>
+      <div id="checks"></div>
+      <p class="verdict" id="verdict"></p>
+    </div>
+
+    <div class="box"><h3>Вопрос, на который стоит ответить себе</h3>
+      <p class="quote" id="rhonest"></p>
+    </div>
+
+    <div class="box"><h3>Терпеть или бросить?</h3>
+      <p>Тип круга объясняет, почему вы в нём. Но главный вопрос другой: <b>что в этих отношениях ещё можно изменить, а что вы уже слишком долго оправдываете</b></p>
+      <p>Понимание само по себе ничего не меняет. Можно годами понимать, что не хочешь так жить, и не знать, с чего начать. Начать можно с маленького шага</p>
+      <div class="price" style="margin-top:14px"><b>Гайд Юлии «Терпеть или бросить?»</b><span>490 ₽</span></div>
+      <ul class="list" style="margin-top:10px"><li>внести ясность и перестать метаться между «уйти» и «остаться»</li><li>разобраться, что в отношениях ещё можно изменить, а где пора сказать твёрдое «с меня хватит»</li><li>уже есть отзывы тех, кто его купил</li></ul>
+      <span class="tag">в рабочей версии: что внутри гайда, как им пользоваться и отзывы, по материалам Юлии · оплата прямо здесь, гайд приходит сразу</span>
+      <a class="btn" href="https://t.me/YuSolodovnikova?text=%D0%92%D0%AB%D0%91%D0%9E%D0%A0" target="_blank" rel="noopener">Получить гайд за 490 ₽</a>
+      <div class="box" style="background:var(--soft);border:0;margin-top:14px"><div class="mini"><img src="img/yulia.jpg" alt="Юлия"><h3 style="margin:0">Или сразу консультация с Юлией</h3></div>
+        <p>Разобраться лично: что запускает ваши реакции, что удерживает вас в привычном круге и что в вашем поведении мешает строить отношения, в которых вам хорошо</p>
+        <a class="btn alt sm" href="https://t.me/YuSolodovnikova" target="_blank" rel="noopener">Написать Юлии</a>
+      </div>
+    </div>
+
+    <div class="box teaser"><h3>Статья Юлии</h3>
+      <b class="tt">Облегчение или перемены: как понять, что в отношениях правда что-то изменилось</b>
+      <p>После ссоры наступает тишина. Он снова нежный, вы снова вместе, и тело выдыхает. Это облегчение настоящее, его невозможно придумать. Именно поэтому его так легко принять за перемены</p>
+      <p>Но облегчение говорит только о том, что напряжение закончилось. Оно ничего не говорит о том, исчезла ли причина, из-за которой вам было плохо. Есть три признака, по которым можно отличить одно от другого. Первый из них…</p>
+      <div class="blur"><p>Первый признак касается не его слов, а того, что происходит через две-три недели после примирения. Если к этому времени вы снова начинаете прислушиваться к его настроению и подбирать слова, значит, изменился только фон, а сам повод для ссоры остался на месте. Второй признак связан с тем, кто в паре делает шаги навстречу</p>
+        <div class="lock">🔒 Продолжение придёт в личку после теста</div>
+      </div>
+    </div>
+
+    <span class="tag">в рабочей версии: результат приходит Юлии, бот присылает продолжение статьи, через 2 дня напоминает про гайд, после гайда приглашает на консультацию или в программу</span>
+    <button class="btn ghost" onclick="show('s0')">Пройти ещё раз</button>
+    <p class="safe">Если рядом с партнёром вам страшно или опасно, не оставайтесь с этим одна. Всероссийский телефон доверия для женщин: 8-800-7000-600</p>
+  </section>
+
+  <footer>Это прототип: вопросы, типы и формулировки собраны по постам канала Юлии, тексты черновые</footer>
+</div>
+
+<script>
+var P={
+ krug:{n:'Круг примирений',q:'«У нас просто сложный период. Теперь-то всё наладится»',d:'Вчера были слёзы, злость и обещание себе больше это не терпеть. А сегодня он написал что-то нежное, и внутри уже отпускает. Вы вспоминаете, за что его любите, и становится легче. Только легче стало вам, а то, из-за чего было плохо, осталось на месте',p:'Можно годами жить от одного примирения до следующего и каждый раз надеяться, что теперь будет по-другому. Облегчение после напряжения легко перепутать с настоящими переменами',h:'Стало легче, да. Но изменилось ли то, из-за чего было плохо?'},
+ udob:{n:'Удобная',q:'«Не буду спорить по пустякам. Не хочу очередного скандала»',d:'Сначала вы решили не спорить по мелочам. Потом перестали говорить, что вам не нравится, реже просите о помощи и не показываете обиду. Он привыкает, что всё в порядке. А вы привыкаете откладывать свои желания на потом',p:'Обида никуда не уходит, а копится. Появляется чувство, что вас не слышат и не замечают. И самое болезненное: вы уже не всегда понимаете, чего хотите сами',h:'В какой момент вы решили, что для любви нужно стать женщиной, с которой мужчине всегда удобно?'},
+ napr:{n:'Жизнь в напряжении',q:'«Надо быть мудрее. Не провоцировать»',d:'Вы заранее понимаете, в каком он настроении: по шагам, по первым словам, по тому, как он закрыл дверь. Дома не получается расслабиться. Вы привыкли рассчитывать только на себя и всё время ждёте очередной неприятности',p:'Жизнь подстраивается под его настроение. Силы уходят на то, чтобы предугадать, сгладить и не допустить. А на то, чтобы просто жить рядом с человеком, на которого можно положиться, их уже не остаётся',h:'Разве ради этого нужны отношения?'},
+ zhdu:{n:'Любовь за двоих',q:'«Со временем он поймёт. Просто нужно подождать»',d:'Он пропадает на несколько дней, а потом появляется как ни в чём не бывало, и вы радуетесь его сообщению, забыв, как переживали. Он говорит, что пока не готов к серьёзному, а вы держитесь за то, чего пока нет',p:'Редкое внимание легко перепутать с интересом, обещания с поступками, а своё сильное чувство с взаимностью. Месяцы уходят на одну и ту же историю: ждёте, терпите, надеетесь и снова разочаровываетесь',h:'Меня устраивает то, что есть сейчас, или я держусь за то, чего пока нет?'}
+};
+var Q=[
+ {t:'Вспомните последнюю ссору. Что было на следующий день?',o:[['Он написал что-то нежное, и внутри уже отпустило','krug'],['Я первая пошла мириться, чтобы не было этого холода','udob'],['Весь день прислушивалась, в каком он настроении','napr'],['Он так и не написал, а я ждала','zhdu']]},
+ {t:'Что вы чаще всего говорите себе, когда вам плохо в отношениях?',o:[['«Это просто сложный период, всё наладится»','krug'],['«Не буду раздувать из мухи слона»','udob'],['«Надо быть мудрее и не провоцировать»','napr'],['«Он изменится, просто нужно время»','zhdu']]},
+ {t:'Он возвращается домой или присылает сообщение. Что вы чувствуете в первую секунду?',o:[['Радость, особенно если до этого поругались','krug'],['Собираюсь: важно, чтобы ему было хорошо','udob'],['Напрягаюсь и пытаюсь понять, какой он сегодня','napr'],['Сердце подпрыгивает: наконец-то он появился','zhdu']]},
+ {t:'Что сейчас с вашими желаниями в этих отношениях?',o:[['Говорю о них в ссорах, а после примирения всё забывается','krug'],['Отложила на потом, сейчас важнее не раскачивать лодку','udob'],['Не до желаний, лишь бы было спокойно','napr'],['Мне хватает того, что он иногда рядом','zhdu']]},
+ {t:'Что происходит с его обещаниями?',o:[['Обещал измениться, неделю было лучше, потом всё повторилось','krug'],['Я ничего не прошу, неудобно требовать','udob'],['Обещал не кричать или не пить, но всё снова','napr'],['Говорит, что пока не готов к серьёзному, а я надеюсь','zhdu']]},
+ {t:'Он отдаляется или пропадает на несколько дней. Что вы делаете?',o:[['Ссоримся, потом бурно миримся','krug'],['Стараюсь ещё больше, чтобы ему было со мной хорошо','udob'],['Честно говоря, выдыхаю: становится спокойнее','napr'],['Жду. Появится, и я забуду, как переживала','zhdu']]},
+ {t:'Если совсем честно, чего вам хочется больше всего?',o:[['Чтобы одно и то же наконец перестало повторяться','krug'],['Чтобы меня услышали и заметили','udob'],['Просто расслабиться дома и ни о чём не думать','napr'],['Чтобы он выбрал меня по-настоящему','zhdu']]}
+];
+var CH=['Изменилось то, из-за чего была ссора?','Он что-то сделал, кроме обещаний?','С тех пор прошло больше двух недель, и вам по-прежнему спокойно?'];
+var i=0,ans=[],cv=[];
+function show(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on')});document.getElementById(id).classList.add('on');window.scrollTo(0,0)}
+function start(){i=0;ans=[];render();show('sq')}
+function render(){var q=Q[i];document.getElementById('qn').textContent='Вопрос '+(i+1)+' из '+Q.length;document.getElementById('qt').textContent=q.t;document.getElementById('prog').style.width=(i/Q.length*100)+'%';var o=document.getElementById('opts');o.innerHTML='';q.o.forEach(function(x){var b=document.createElement('button');b.className='opt';b.textContent=x[0];b.onclick=function(){ans[i]=x[1];i++;if(i<Q.length)render();else result()};o.appendChild(b)})}
+function prev(){if(i>0){i--;render()}else show('s0')}
+function verdict(){var n=cv.filter(function(v){return v===1}).length,d=cv.filter(function(v){return v!==undefined}).length;var t='';if(d<CH.length){t=''}else if(n===3){t='Похоже на настоящие перемены. Это стоит заметить и поддержать'}else if(n===0){t='Это облегчение, а не перемены. Повод для ссоры никуда не исчез'}else{t='Что-то сдвинулось, но не всё. Важно понять, что именно осталось на месте'}document.getElementById('verdict').textContent=t}
+function result(){
+ var c={krug:0,udob:0,napr:0,zhdu:0};ans.forEach(function(k){c[k]++});
+ var keys=Object.keys(c).sort(function(a,b){return c[b]-c[a]||ans.indexOf(a)-ans.indexOf(b)});
+ var a=P[keys[0]];
+ document.getElementById('rh').textContent=a.n;document.getElementById('rq').textContent=a.q;
+ document.getElementById('rd').textContent=a.d;document.getElementById('rp').textContent=a.p;document.getElementById('rhonest').textContent=a.h;
+ var m=document.getElementById('meter');m.innerHTML='';
+ keys.forEach(function(k){var r=document.createElement('div');r.className='mrow';r.innerHTML='<span>'+P[k].n+'</span><i><b style="width:0"></b></i>';m.appendChild(r);setTimeout(function(){r.querySelector('b').style.width=Math.max(6,c[k]/Q.length*100)+'%'},150)});
+ cv=[];var ch=document.getElementById('checks');ch.innerHTML='';document.getElementById('verdict').textContent='';
+ CH.forEach(function(t,n){var d=document.createElement('div');d.className='chk';d.innerHTML='<p>'+t+'</p><div class="yn"><button>да</button><button>нет</button></div>';var bs=d.querySelectorAll('button');bs.forEach(function(b,k){b.onclick=function(){bs.forEach(function(x){x.classList.remove('sel')});b.classList.add('sel');cv[n]=k===0?1:0;verdict()}});ch.appendChild(d)});
+ show('sr')}
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Мой план в бассейне</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#eaf6fb;--card:#fff;--line:#cfe6ef;--text:#12303d;--muted:#5d7b88;--accent:#0f7fa8;--soft:#dff1f8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.proto{background:var(--accent);color:#fff;text-align:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:7px 16px}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
+header{display:flex;align-items:center;gap:12px;padding:20px 0 8px}
+.ava{width:52px;height:52px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:22px;font-weight:700}
+header b{display:block;font-size:15px}header span{color:var(--muted);font-size:13px}
+.hero{margin-top:12px;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#9fdcf2,#3aa6cf);padding:24px 20px 0;color:#fff}
+.hero h1{font-size:30px;line-height:1.1;font-weight:800}
+.hero p{margin-top:8px;font-size:15px;opacity:.95}
+.hero svg{display:block;width:100%;margin-top:10px}
+.grp{margin-top:20px}
+.lbl{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:11px 13px;font-size:15px;cursor:pointer;color:var(--text)}
+.chips button.on{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:17px 18px;font-size:17px;font-weight:700;cursor:pointer;background:var(--accent);color:#fff;text-align:center;text-decoration:none;margin-top:22px}
+.btn:disabled{opacity:.4;cursor:default}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:500;margin-top:12px}
+.note{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
+.screen{display:none}.screen.on{display:block;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.res-k{color:var(--accent);font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-top:22px}
+.res-h{font-size:28px;line-height:1.12;font-weight:800;margin:6px 0 8px}
+.sum{display:flex;gap:8px;margin:12px 0 4px}
+.sum div{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+.sum b{display:block;font-size:22px;color:var(--accent)}.sum span{font-size:12px;color:var(--muted)}
+.prog{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin:14px 0 4px}.prog i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
+.lesson{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-top:10px;display:grid;grid-template-columns:30px 1fr;gap:12px;cursor:pointer}
+.lesson.done{background:#f2fafd;opacity:.75}
+.ck{width:28px;height:28px;border-radius:8px;border:2px solid var(--accent);display:grid;place-items:center;color:#fff;font-weight:800}
+.lesson.done .ck{background:var(--accent)}
+.lesson small{color:var(--muted);font-size:12px;letter-spacing:.05em;text-transform:uppercase}
+.lesson b{display:block;font-size:17px;margin:2px 0 4px}
+.lesson ul{list-style:none}.lesson li{color:#41606c;font-size:14px;padding:2px 0 2px 16px;position:relative}.lesson li:before{content:"";position:absolute;left:2px;top:11px;width:7px;height:2px;background:var(--accent)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:14px}
+.box h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.warn{background:#fff6e6;border-color:#ffd99a}
+.tag{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#e2f2f8;color:#0b6283;border:1px dashed #7cc2dc;border-radius:6px;padding:3px 7px;margin-top:10px}
+footer{border-top:1px solid var(--line);margin-top:36px;padding-top:18px;color:var(--muted);font-size:13px;text-align:center}
+@media print{.proto,header,.btn,.tag,footer,.noprint{display:none!important}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="proto">Прототип лид-магнита для Nikole · собран «Средой продаж»</div>
+<div class="wrap">
+  <header><div class="ava">N</div><div><b>Nikole · обучение плаванию</b><span>взрослые и дети</span></div></header>
+
+  <section class="screen on" id="s0">
+    <div class="hero">
+      <h1>Соберите свой план: первые 5 занятий в бассейне</h1>
+      <p>Выберите 4 параметра, и конструктор соберёт план под вас или вашего ребёнка</p>
+      <svg viewBox="0 0 400 90"><circle cx="330" cy="22" r="16" fill="#ffd27a"/><path d="M0 50 Q50 30 100 50 T200 50 T300 50 T400 50 V90 H0z" fill="#fff" opacity=".35"/><path d="M0 64 Q50 44 100 64 T200 64 T300 64 T400 64 V90 H0z" fill="#fff" opacity=".55"/></svg>
+    </div>
+    <div class="grp"><div class="lbl">Кто учится</div><div class="chips" data-k="who"><button data-v="a">Я сам(а)</button><button data-v="k">Ребёнок</button></div></div>
+    <div class="grp"><div class="lbl">Как сейчас в воде</div><div class="chips" data-k="lv"><button data-v="0">Боюсь воды</button><button data-v="1">Стою, но лицо не опускаю</button><button data-v="2">Держусь у бортика</button><button data-v="3">Плыву, но быстро устаю</button></div></div>
+    <div class="grp"><div class="lbl">Цель</div><div class="chips" data-k="g"><button data-v="calm">Перестать бояться</button><button data-v="trip">Плавать в отпуске</button><button data-v="tech">Плавать правильно и долго</button></div></div>
+    <div class="grp"><div class="lbl">Сколько раз в неделю</div><div class="chips" data-k="f"><button data-v="1">1 раз</button><button data-v="2">2 раза</button><button data-v="3">3 раза</button></div></div>
+    <button class="btn" id="go" disabled onclick="build()">Собрать мой план</button>
+    <p class="note" id="left">Осталось выбрать: 4</p>
+  </section>
+
+  <section class="screen" id="sr">
+    <div class="res-k" id="rk"></div>
+    <h2 class="res-h" id="rh"></h2>
+    <div class="sum"><div><b>5</b><span>занятий</span></div><div><b id="wk"></b><span>недель</span></div><div><b id="dn">0</b><span>пройдено</span></div></div>
+    <div class="prog"><i id="pg"></i></div>
+    <p class="note noprint" style="text-align:left">Отмечайте занятия галочкой, когда пройдёте</p>
+    <div id="plan"></div>
+    <div class="box warn"><h3>Важно</h3><p>Все упражнения делаются на мелкой воде, у бортика и рядом с тренером. План готовит к занятиям, а не заменяет их</p></div>
+    <div class="box"><h3>Пройти план быстрее</h3><p id="cta"></p></div>
+    <button class="btn" onclick="window.print()">Сохранить план</button>
+    <a class="btn ghost" href="#" onclick="return false">Записаться на первое занятие</a>
+    <span class="tag">в рабочей версии: бот присылает план, видео к каждому упражнению и напоминает о следующем занятии</span>
+    <button class="btn ghost" onclick="show('s0')">Собрать заново</button>
+  </section>
+
+  <footer>Это прототип: упражнения и тексты черновые</footer>
+</div>
+<script>
+var ST=[
+ ['Знакомство с водой',['зайти по пояс, походить вдоль бортика','поплескать воду на плечи и лицо','спокойно подышать, держась за бортик']],
+ ['Выдох в воду',['пузыри: вдох ртом, выдох в воду','опустить лицо в воду на 3 секунды','повторить 10 раз у бортика']],
+ ['Глаза в воде',['открыть глаза под водой в очках','достать игрушку с мелкого дна','выдох в воду 5 раз подряд']],
+ ['Вода держит',['звёздочка на груди у бортика','звёздочка на спине с поддержкой тренера','почувствовать, как вода держит без усилий']],
+ ['Первое скольжение',['оттолкнуться от бортика к тренеру','скольжение на груди, руки вытянуты','встать на ноги после скольжения']],
+ ['Работа ног',['ноги кролем, держась за бортик','ноги кролем с доской','движение от бедра, носки вытянуты']],
+ ['Скольжение с ногами',['скольжение с доской и работой ног','отрезки по 5-10 метров','выдох в воду во время скольжения']],
+ ['Руки и вдох',['гребок руками с доской между ног','вдох в сторону, а не вперёд','ритм: гребок, гребок, вдох']],
+ ['Первые метры кролем',['руки, ноги и дыхание вместе','отрезки по 10-15 метров','отдых у бортика между отрезками']],
+ ['Дыхание без сбоев',['вдох на каждый третий гребок','длинный выдох в воду','отрезки по 25 метров']],
+ ['Выносливость',['25 метров, отдых, ещё 25','спокойный темп без остановок','контроль дыхания на всей дистанции']],
+ ['50 метров без остановки',['50 метров в спокойном темпе','разбор техники с тренером','план на следующий месяц']]
+];
+var START=[0,1,3,7],o={};
+document.querySelectorAll('.chips').forEach(function(c){c.querySelectorAll('button').forEach(function(b){b.onclick=function(){o[c.dataset.k]=b.dataset.v;c.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x==b)});var n=4-Object.keys(o).length;document.getElementById('go').disabled=n>0;document.getElementById('left').textContent=n>0?'Осталось выбрать: '+n:'Всё готово'}})});
+function show(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on')});document.getElementById(id).classList.add('on');window.scrollTo(0,0)}
+var done=[];
+function build(){
+ var s=START[+o.lv],k=o.who=='k',f=+o.f;
+ document.getElementById('rk').textContent='План '+(k?'для ребёнка':'для вас')+' · '+f+' раз'+(f>1?'а':'')+' в неделю';
+ document.getElementById('rh').textContent={calm:'От страха к спокойствию в воде',trip:'К отпуску уверенно на воде',tech:'К правильной технике и выносливости'}[o.g];
+ document.getElementById('wk').textContent=Math.ceil(5/f);
+ done=[0,0,0,0,0];
+ document.getElementById('plan').innerHTML=[0,1,2,3,4].map(function(n){var x=ST[s+n];var wk=Math.floor(n/f)+1;return '<div class="lesson" onclick="tick('+n+',this)"><div class="ck">✓</div><div><small>Занятие '+(n+1)+' · неделя '+wk+'</small><b>'+x[0]+'</b><ul>'+x[1].map(function(l){return '<li>'+l+'</li>'}).join('')+'</ul></div></div>'}).join('');
+ document.getElementById('cta').textContent=(k?'С тренером ребёнок проходит такой план спокойнее: упражнения подаются как игра, а страх не успевает закрепиться':'С тренером план проходится быстрее: он сразу видит ошибки, которые сами вы не заметите')+'. Начните с первого занятия, а дальше идём по плану вместе';
+ upd();show('sr')}
+function tick(n,el){done[n]=done[n]?0:1;el.classList.toggle('done',!!done[n]);upd()}
+function upd(){var c=done.reduce(function(a,b){return a+b},0);document.getElementById('dn').textContent=c;document.getElementById('pg').style.width=(c*20)+'%'}
+</script>
+</body>
+</html>

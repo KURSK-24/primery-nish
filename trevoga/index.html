@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Какая у вас тревога</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#f5f4fb;--card:#fff;--line:#e2dff2;--text:#1f1b3a;--muted:#6f6a8c;--accent:#3d348b;--soft:#ecebf8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.proto{background:#2a2366;color:#fff;text-align:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:7px 16px}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
+header{display:flex;align-items:center;gap:12px;padding:20px 0 8px}
+header img{width:52px;height:52px;border-radius:50%;object-fit:cover}
+header b{display:block;font-size:15px}
+header span{color:var(--muted);font-size:13px}
+.hero{margin-top:12px;border-radius:20px;background:var(--accent);color:#fff;padding:26px 20px 24px}
+.hero small{letter-spacing:.1em;text-transform:uppercase;font-size:12px;opacity:.75}
+.hero h1{font-size:30px;line-height:1.12;margin:8px 0 10px}
+.hero p{opacity:.9;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.chips span{background:rgba(255,255,255,.14);border-radius:20px;padding:4px 10px;font-size:12px}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:17px 18px;font-size:17px;font-weight:700;cursor:pointer;background:var(--accent);color:#fff;text-align:center;text-decoration:none;margin-top:16px}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:500}
+.btn.sm{padding:12px;font-size:15px;margin-top:12px}
+.note{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
+.screen{display:none}.screen.on{display:block;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.bar{height:4px;background:var(--line);border-radius:4px;margin:22px 0 16px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.qn{color:var(--muted);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.q{font-size:24px;line-height:1.2;margin:6px 0 16px}
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:14px;padding:14px 16px;font-size:16px;margin-bottom:10px;cursor:pointer}
+.opt:hover,.opt:focus-visible{border-color:var(--accent);outline:none}
+.backb{background:none;border:0;color:var(--muted);font-size:14px;cursor:pointer;padding:6px 0}
+.res-k{color:var(--accent);font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-top:24px}
+.res-h{font-size:28px;line-height:1.15;margin:6px 0 10px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:14px}
+.box h3{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.tech b{font-size:19px;display:block}
+.pill{display:inline-block;background:var(--soft);color:var(--accent);border-radius:20px;padding:3px 10px;font-size:12px;margin:6px 0 8px}
+.breath{display:grid;place-items:center;margin:14px 0 4px}
+.circle{width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,#8f86d6,#3d348b);transform:scale(.55);transition:transform 4s ease-in-out;display:grid;place-items:center;color:#fff;font-weight:700;text-align:center;font-size:14px}
+.bstate{margin-top:10px;font-weight:700;color:var(--accent);min-height:24px;text-align:center}
+.g54{font-size:44px;font-weight:800;color:var(--accent);text-align:center;margin-top:8px}
+.g54t{text-align:center;margin-bottom:4px}
+.quote{border-left:3px solid var(--accent);padding-left:12px;font-style:italic;color:#3b3660;margin:8px 0}
+.price{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.price b{font-size:18px}.price span{font-size:21px;color:var(--accent);font-weight:800;white-space:nowrap}
+.list{list-style:none}.list li{padding:5px 0 5px 20px;position:relative}.list li:before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
+.teaser .tt{display:block;font-size:19px;line-height:1.25;margin-bottom:8px}
+.blur{position:relative;margin-top:8px}
+.blur p{filter:blur(5px);user-select:none;-webkit-user-select:none}
+.lock{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-weight:700;color:var(--accent);background:linear-gradient(180deg,rgba(255,255,255,0),rgba(255,255,255,.85) 40%);padding:10px}
+.tag{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:var(--soft);color:var(--accent);border:1px dashed #a9a2dc;border-radius:6px;padding:3px 7px;margin-top:10px}
+footer{border-top:1px solid var(--line);margin-top:36px;padding-top:18px;color:var(--muted);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<div class="proto">Прототип лид-магнита для Кристины · собран «Средой продаж»</div>
+<div class="wrap">
+  <header>
+    <img src="img/ava.jpg" alt="Кристина Журавлева" width="52" height="52">
+    <div><b>Кристина Журавлева · КПТ психолог</b><span>@psy_with_kri</span></div>
+  </header>
+
+  <section class="screen on" id="s0">
+    <div class="hero">
+      <small>Тест за 1 минуту</small>
+      <h1>Какая у вас тревога и какая техника поможет именно вам</h1>
+      <p>Ответьте на 5 вопросов. Вы получите свой тип тревоги и одну технику под него, которую можно сделать прямо сейчас, на этой странице</p>
+      <div class="chips"><span>острая</span><span>навязчивые мысли</span><span>хроническая</span><span>фоновая</span><span>постоянная</span></div>
+    </div>
+    <button class="btn" onclick="start()">Пройти тест</button>
+    <p class="note">Это не диагноз, а подсказка, с чего начать</p>
+  </section>
+
+  <section class="screen" id="sq">
+    <div class="bar"><i id="prog"></i></div>
+    <div class="qn" id="qn"></div>
+    <h2 class="q" id="qt"></h2>
+    <div id="opts"></div>
+    <button class="backb" onclick="prev()">← назад</button>
+  </section>
+
+  <section class="screen" id="sr">
+    <div class="res-k">Ваш тип тревоги</div>
+    <h2 class="res-h" id="rh"></h2>
+    <p id="rd"></p>
+
+    <div class="box tech"><h3>Ваша техника</h3><b id="tn"></b><span class="pill" id="tp"></span><p id="tt"></p><div id="tool"></div></div>
+
+    <div class="box"><h3>Ещё вам подойдёт</h3><b id="t2n"></b><p id="t2t"></p></div>
+
+    <div class="box"><h3>1 · Тревога не уходит сама</h3>
+      <p>Техника снимает тревогу здесь и сейчас. Но если причину не трогать, тревога возвращается, и с каждым разом ей нужно всё меньше повода. Сегодня её запускает отчёт, через месяц любое сообщение от начальника</p>
+      <p class="quote">«Шаги есть. Но честно, сама по себе инструкция не работает»</p>
+    </div>
+
+    <div class="box"><h3>2 · Что происходит, если с ней жить</h3>
+      <p>Первым реагирует тело. Плохо спится, зажаты плечи и челюсть, болит голова, сбоит желудок, сердце стучит без причины. Тело живёт так, будто опасность рядом всегда</p>
+      <p style="margin-top:8px">Потом тревога начинает решать за вас. Вы откладываете разговор, не идёте на собеседование, не меняете то, что давно хочется поменять. Не от лени, а потому что тревога сковывает</p>
+    </div>
+
+    <div class="box"><h3>3 · Тревогой можно научиться управлять</h3>
+      <p>Это навык, а не черта характера. В КПТ мы находим мысль, которая запускает тревогу, и учимся с ней обращаться. Уже за одну-две консультации можно понять, откуда она берётся, и начать действовать</p>
+      <div class="box" style="background:var(--soft);border:0;margin-top:12px"><h3>На консультации вы получите</h3>
+        <ul class="list"><li>карту своей тревоги: что её запускает и что поддерживает</li><li>2-3 техники под вашу ситуацию, а не общий список</li><li>план на ближайшие недели: что делать, когда накрывает</li></ul>
+      </div>
+    </div>
+
+    <div class="box teaser"><h3>Статья Кристины</h3>
+      <b class="tt">Почему тревога возвращается, даже когда вы всё делаете правильно</b>
+      <p>Вы дышите по технике, гуляете, высыпаетесь. Становится легче, а через неделю всё по новой. Дело не в том, что вы плохо стараетесь. Тревога держится на одной мысли, которую вы почти не замечаете, потому что она звучит как правда. Чаще всего это одна из трёх мыслей:</p>
+      <div class="blur"><p>Первая: «Если я расслаблюсь, случится что-то плохое». Она заставляет постоянно быть начеку и проверять. Вторая: «Я не справлюсь, если это произойдёт». Третья: «Я должна всё контролировать». Каждая из них запускает свой круг: мысль, тело, действие и снова мысль. Чтобы его разорвать, нужно найти, где именно</p>
+        <div class="lock">🔒 Продолжение откроется после записи на консультацию</div>
+      </div>
+    </div>
+
+    <div class="box"><h3>Консультация</h3>
+      <div class="price"><b>КПТ, 60 минут</b><span>4 000 ₽</span></div>
+    </div>
+    <a class="btn" href="https://t.me/k_zhu" target="_blank" rel="noopener">Записаться к Кристине</a>
+    <span class="tag">в рабочей версии: бот через 3 дня спрашивает, помогла ли техника, и предлагает консультацию</span>
+    <button class="btn ghost" onclick="show('s0')">Пройти ещё раз</button>
+    <p class="note">Эти техники помогают справляться с тревогой самостоятельно. Если тревожность сильно влияет на качество жизни, обратитесь к специалисту</p>
+  </section>
+
+  <footer>Это прототип: техники взяты из гайда Кристины «6 техник от тревожности», вопросы и тексты черновые</footer>
+</div>
+
+<script>
+var T={
+ acute:{type:'Острая тревога',d:'Тревога накрывает волной, и тело реагирует раньше, чем вы успеваете подумать: сердце, дыхание, ладони. Мозг не отличает реальную угрозу от воображаемой, поэтому начинать стоит с тела',n:'Дыхание 4-7-8',p:'острая тревога, паника',t:'Вдох 4 секунды, задержка 7, выдох 8. Повторите 3-4 раза. Активирует парасимпатическую нервную систему и быстро успокаивает тело',tool:'breath'},
+ flood:{type:'Мысли захлёстывают',d:'Мыслей много и сразу, они перебивают друг друга, и вы уже не здесь, а в десяти сценариях одновременно. Помогает вернуть внимание в «здесь и сейчас»',n:'Техника 5-4-3-2-1',p:'захлёстывают мысли',t:'Назовите 5 вещей, которые видите, 4, которые можете потрогать, 3, которые слышите, 2 запаха и 1 вкус. Возвращает в «здесь и сейчас»',tool:'g54'},
+ chronic:{type:'Хроническая тревога',d:'Тревога живёт в теле: плечи, челюсть, спина напряжены так давно, что вы перестали это замечать. Телу нужно заново научиться отпускать',n:'Мышечная релаксация',p:'хроническая тревога',t:'Поочерёдно напрягайте и расслабляйте группы мышц от ног к голове. Напряжение 5 секунд, расслабление 10 секунд. Тело учится ощущать разницу между напряжением и покоем'},
+ obsess:{type:'Навязчивые мысли',d:'В голове крутится «а вдруг», и сценарии становятся всё страшнее. Пока мысль в голове, она кажется огромной. На бумаге она становится размером с себя',n:'Запись тревожных мыслей',p:'навязчивые мысли',t:'Запишите: что тревожит, насколько это реально по шкале от 0 до 10, что самое худшее и что самое вероятное. Перенос мыслей на бумагу снижает их «власть» над вами'},
+ backg:{type:'Фоновая тревога',d:'Ничего конкретного не случилось, но спокойно не бывает. Тревога как шум на фоне, который забирает силы на весь день',n:'Физическая активность',p:'фоновая тревога, стресс',t:'20-30 минут ходьбы, бега или любого движения. Сжигает кортизол и адреналин, запускает выработку эндорфинов. Один из самых доказанных методов борьбы с тревогой'},
+ const:{type:'Постоянная тревога',d:'Тревога с вами почти всегда и занимает всё свободное место в голове. Ей нужно выделить своё время, чтобы она перестала занимать всё остальное',n:'«Время для тревоги»',p:'постоянная тревога',t:'Выделите 15-20 минут в день специально для тревог. Если мысль приходит раньше, скажите себе: «Подумаю об этом в 18:00». Мозг учится не тревожиться бесконечно'}
+};
+var Q=[
+ {t:'Как чаще всего проявляется ваша тревога?',o:[['Накрывает волной: сердце, дыхание','acute'],['Мысли крутятся по кругу и не отпускают','obsess'],['Тело постоянно напряжено','chronic'],['Просто неспокойно, без причины','backg']]},
+ {t:'Когда это бывает?',o:[['Внезапно, в моменте','acute'],['Когда много дел и всё навалилось','flood'],['Перед сном и ночью','obsess'],['Почти всегда','const']]},
+ {t:'Что происходит в голове?',o:[['Сценарии «а вдруг…»','obsess'],['Много мыслей сразу, не могу сосредоточиться','flood'],['Ничего конкретного, просто фон','backg'],['Одна и та же тревога весь день','const']]},
+ {t:'Что чувствует тело?',o:[['Колотится сердце, не хватает воздуха','acute'],['Зажаты плечи, челюсть, спина','chronic'],['Усталость и нет сил','backg'],['Не могу усидеть на месте','flood']]},
+ {t:'Как давно это с вами?',o:[['Последние дни','acute'],['Несколько недель','backg'],['Месяцы и дольше','chronic'],['Сколько себя помню','const']]}
+];
+var i=0,ans=[],timer=null;
+function show(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on')});document.getElementById(id).classList.add('on');window.scrollTo(0,0)}
+function start(){i=0;ans=[];render();show('sq')}
+function render(){var q=Q[i];document.getElementById('qn').textContent='Вопрос '+(i+1)+' из '+Q.length;document.getElementById('qt').textContent=q.t;document.getElementById('prog').style.width=(i/Q.length*100)+'%';var o=document.getElementById('opts');o.innerHTML='';q.o.forEach(function(x){var b=document.createElement('button');b.className='opt';b.textContent=x[0];b.onclick=function(){ans[i]=x[1];i++;if(i<Q.length)render();else result()};o.appendChild(b)})}
+function prev(){if(i>0){i--;render()}else show('s0')}
+function result(){
+ var c={};ans.forEach(function(k){c[k]=(c[k]||0)+1});
+ var keys=Object.keys(c).sort(function(a,b){return c[b]-c[a]||ans.indexOf(a)-ans.indexOf(b)});
+ var a=T[keys[0]],b=T[keys[1]||(keys[0]=='acute'?'flood':'acute')];
+ document.getElementById('rh').textContent=a.type;document.getElementById('rd').textContent=a.d;
+ document.getElementById('tn').textContent=a.n;document.getElementById('tp').textContent=a.p;document.getElementById('tt').textContent=a.t;
+ document.getElementById('t2n').textContent=b.n;document.getElementById('t2t').textContent=b.t;
+ var tool=document.getElementById('tool');tool.innerHTML='';
+ if(a.tool=='breath')tool.innerHTML='<div class="breath"><div class="circle" id="cir"></div><div class="bstate" id="bs"></div></div><button class="btn sm" onclick="breathe()">Подышать со мной</button>';
+ if(a.tool=='g54')tool.innerHTML='<div class="g54" id="gn">5</div><p class="g54t" id="gt">вещей, которые вы видите</p><button class="btn sm" id="gb" onclick="g54()">Назвала, дальше</button>';
+ g=0;show('sr')}
+function breathe(){clearTimeout(timer);var c=document.getElementById('cir'),s=document.getElementById('bs'),n=0;
+ function step(){if(n>=3){s.textContent='Готово. Как вы сейчас?';c.style.transform='scale(.55)';return}
+  c.style.transition='transform 4s ease-in-out';c.style.transform='scale(1)';s.textContent='Вдох · 4';
+  timer=setTimeout(function(){s.textContent='Задержка · 7';
+   timer=setTimeout(function(){c.style.transition='transform 8s ease-in-out';c.style.transform='scale(.55)';s.textContent='Выдох · 8';
+    timer=setTimeout(function(){n++;step()},8000)},7000)},4000)}
+ step()}
+var g=0,G=[['5','вещей, которые вы видите'],['4','вещи, которые можете потрогать'],['3','звука, которые слышите'],['2','запаха'],['1','вкус']];
+function g54(){g++;if(g<5){document.getElementById('gn').textContent=G[g][0];document.getElementById('gt').textContent=G[g][1]}else{document.getElementById('gn').textContent='✓';document.getElementById('gt').textContent='Вы здесь и сейчас';document.getElementById('gb').style.display='none'}}
+</script>
+</body>
+</html>

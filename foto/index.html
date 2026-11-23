@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Нейросеть или живая съёмка</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#0f0d0c;--card:#1a1716;--line:#2e2927;--text:#f3ede8;--muted:#a89e97;--accent:#c8423a;--accent2:#e9d5c4}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:16px/1.5 -apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.serif{font-family:"Didot","Bodoni MT","Playfair Display",Georgia,"Times New Roman",serif}
+.proto{background:var(--accent);color:#fff;text-align:center;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:7px 16px}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px 48px}
+header{display:flex;align-items:center;gap:12px;padding:20px 0 8px}
+header img{width:52px;height:52px;border-radius:50%;object-fit:cover;filter:grayscale(1)}
+header b{display:block;font-size:15px}
+header span{color:var(--muted);font-size:13px}
+.hero{position:relative;margin:12px 0 0;border-radius:18px;overflow:hidden;aspect-ratio:4/5;background:#222}
+.hero .grid{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px}
+.hero .grid img{width:100%;height:100%;object-fit:cover}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 25%,rgba(0,0,0,.9))}
+.hero .txt{position:absolute;left:20px;right:20px;bottom:22px}
+.hero h1{font-size:32px;line-height:1.08;font-weight:400}
+.hero p{color:var(--accent2);margin-top:10px;font-size:15px}
+.btn{display:block;width:100%;border:0;border-radius:14px;padding:17px 18px;font-size:17px;font-weight:600;cursor:pointer;background:var(--text);color:#111;text-align:center;text-decoration:none;margin-top:16px}
+.btn.red{background:var(--accent);color:#fff}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);font-weight:500}
+.note{color:var(--muted);font-size:13px;text-align:center;margin-top:10px}
+.screen{display:none}.screen.on{display:block;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.bar{height:3px;background:var(--line);border-radius:3px;margin:22px 0 18px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.qn{color:var(--muted);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.q{font-size:26px;line-height:1.15;margin:6px 0 18px;font-weight:400}
+.opt{display:block;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);color:var(--text);border-radius:14px;padding:15px 16px;font-size:16px;margin-bottom:10px;cursor:pointer;transition:border-color .15s}
+.opt:hover,.opt:focus-visible{border-color:var(--accent);outline:none}
+.opt small{display:block;color:var(--muted);font-size:13px;margin-top:2px}
+.back{background:none;border:0;color:var(--muted);font-size:14px;margin-top:6px;cursor:pointer;padding:6px 0}
+.res-k{color:var(--accent2);font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-top:24px}
+.res-h{font-size:34px;line-height:1.08;font-weight:400;margin:6px 0 12px}
+.res-d{color:#ddd3cb}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin-top:14px}
+.box h3{font-size:14px;letter-spacing:.05em;text-transform:uppercase;color:var(--accent2);margin-bottom:10px;font-weight:600}
+.box ul{list-style:none}
+.box li{padding:6px 0 6px 20px;position:relative;color:#e6ddd6}
+.box li:before{content:"";position:absolute;left:2px;top:15px;width:8px;height:1px;background:var(--accent)}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vs div{background:#141110;border:1px solid var(--line);border-radius:12px;padding:12px;font-size:14px;color:#ddd3cb}
+.vs b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;color:var(--muted)}
+.vs div.me{border-color:#6b3a33}.vs div.me b{color:var(--accent2)}
+.pose{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:start;padding:12px 0;border-top:1px solid var(--line)}
+.pose:first-of-type{border-top:0;padding-top:4px}
+.pose img{width:96px;aspect-ratio:3/4;object-fit:cover;border-radius:10px;background:#222}
+.pose b{display:block;margin-bottom:4px}
+.pose span{color:#cfc5bd;font-size:14px}
+.price{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
+.price b{font-size:19px}
+.price span{font-size:21px;color:var(--accent2);white-space:nowrap}
+.tag{display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;background:#2b2220;color:var(--accent2);border:1px dashed #6b4a40;border-radius:6px;padding:3px 7px;margin-top:10px}
+footer{border-top:1px solid var(--line);margin-top:36px;padding-top:18px;color:var(--muted);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<div class="proto">Прототип лид-магнита для Насти · собран «Средой продаж»</div>
+<div class="wrap">
+  <header>
+    <img src="img/ava.jpg" alt="Настя" width="52" height="52">
+    <div><b>Настя · фотограф, модель, стилист</b><span>Нижний Новгород</span></div>
+  </header>
+
+  <section class="screen on" id="s0">
+    <div class="hero">
+      <div class="grid">
+        <img src="img/05.jpg" alt=""><img src="img/10.jpg" alt="">
+        <img src="img/07.jpg" alt=""><img src="img/04.jpg" alt="">
+      </div>
+      <div class="shade"></div>
+      <div class="txt">
+        <h1 class="serif">Нейросеть или живая съёмка: что нужно именно тебе?</h1>
+        <p>Честный тест от фотографа. 5 вопросов, и ты узнаешь, где хватит нейросети, а где нет. Плюс 3 позы под тебя от модели</p>
+      </div>
+    </div>
+    <button class="btn red" onclick="start()">Пройти тест</button>
+    <p class="note">Если тебе подходит нейросеть, я так и скажу</p>
+  </section>
+
+  <section class="screen" id="sq">
+    <div class="bar"><i id="prog"></i></div>
+    <div class="qn" id="qn"></div>
+    <h2 class="q serif" id="qt"></h2>
+    <div id="opts"></div>
+    <button class="back" onclick="prev()">← назад</button>
+  </section>
+
+  <section class="screen" id="sr">
+    <div class="res-k">Мой честный ответ</div>
+    <h2 class="res-h serif" id="rh"></h2>
+    <p class="res-d" id="rd"></p>
+
+    <div class="box"><h3 id="whyh"></h3><ul id="why"></ul></div>
+
+    <div class="box"><h3>Нейросеть и фотограф</h3>
+      <div class="vs">
+        <div><b>Нейросеть</b>рисует, как ты могла бы выглядеть</div>
+        <div class="me"><b>Фотограф</b>показывает, как ты выглядишь, когда тебе хорошо</div>
+        <div><b>Нейросеть</b>придумывает одежду и детали</div>
+        <div class="me"><b>Фотограф</b>снимает твою вещь, твой товар, твои украшения</div>
+        <div><b>Нейросеть</b>ждёт, что ты сама опишешь образ</div>
+        <div class="me"><b>Стилист</b>собирает образ и приносит гардероб</div>
+      </div>
+    </div>
+
+    <div class="box"><h3 id="poseh">3 позы под тебя от модели</h3><div id="poses"></div>
+      <p class="note" style="text-align:left;margin-top:12px">Эти позы пригодятся и для селфи. На съёмке я ставлю их сама: работаю моделью с 2015 года</p>
+    </div>
+
+    <div class="box"><h3 id="fmth">Тебе подойдёт</h3>
+      <div class="price"><b id="pn"></b><span id="pp"></span></div>
+      <ul id="pl"></ul>
+    </div>
+
+    <a class="btn red" href="https://t.me/crying_moonflower" target="_blank" rel="noopener">Хочу живую съёмку</a>
+    <span class="tag">в рабочей версии: бот присылает позы и чек-лист подготовки, затем ведёт к записи</span>
+    <button class="btn ghost" onclick="show('s0')">Пройти ещё раз</button>
+  </section>
+
+  <footer>Это прототип: фото и цены взяты с сайта Насти, тексты черновые, в рабочей версии их пишет Настя своими словами. Собираем за 2-3 вечера, с Яндекс Метрикой и воронкой</footer>
+</div>
+
+<script>
+var Q=[
+ {t:"Для чего тебе фото?",o:[
+  ["Аватарка или открытка","для себя, просто для настроения",{f:"fun"}],
+  ["Блог и соцсети","лицо эксперта, контент, продажи",{f:"blog"}],
+  ["Бренд или товар","одежда, украшения, свой продукт",{f:"brand"}],
+  ["Семья или пара","память, love story, свадьба",{f:"love"}],
+  ["Портфолио модели","журнальные кадры",{f:"model"}]]},
+ {t:"Что для тебя важнее всего?",o:[
+  ["Чтобы меня узнавали в жизни","",{w:"face"}],
+  ["Настоящие эмоции","",{w:"emo"}],
+  ["Чтобы на фото были мои вещи или мой товар","",{w:"thing"}],
+  ["Просто красивая картинка","похожа или нет, не так важно",{w:"pic"}]]},
+ {t:"Как часто тебе нужны новые фото?",o:[
+  ["Один раз, к празднику","",{n:"once"}],
+  ["Раз в сезон","",{n:"season"}],
+  ["Постоянно, для контента","",{n:"often"}]]},
+ {t:"Что смущает тебя на фото?",o:[
+  ["Руки, не знаю, куда их деть","",{p:"hands"}],
+  ["Лицо и второй подбородок","",{p:"face"}],
+  ["Фигура","",{p:"body"}],
+  ["Не знаю, куда смотреть","",{p:"look"}],
+  ["Ничего, люблю сниматься","",{p:"none"}]]},
+ {t:"Ты уже пробовала нейросеть?",o:[
+  ["Да, и мне понравилось","",{ai:"good"}],
+  ["Да, но получаюсь не я","",{ai:"notme"}],
+  ["Нет ещё","",{ai:"no"}]]}
+];
+var WHY={
+ face:"Нейросеть меняет черты лица: на картинке ты красивая, но тебя не узнают при встрече. Для блога и знакомств это минус",
+ emo:"Эмоции нейросеть придумывает. Смех вашей семьи или взгляд на любимого она не повторит, их можно только поймать",
+ thing:"Детали вещей нейросеть искажает: ткань, принт, застёжку, украшение. Покупатель ждёт ту вещь, что на фото",
+ pic:"Если нужна просто красивая картинка, нейросеть справится. Живая съёмка нужна, когда фото должно быть про тебя"
+};
+var POSE={
+ hands:{h:"Руки",l:[["05","Займи руки делом","Поправь воротник, волосы, перчатку. Рука в движении не выглядит лишней"],["08","Оставь зазор","Не прижимай руку к телу, держи между рукой и талией немного воздуха, так силуэт тоньше"],["32","Кисть ребром","Поверни кисть к камере ребром, а не ладонью плашмя, так рука выглядит изящнее"]]},
+ face:{h:"Лицо",l:[["10","Шею вперёд","Чуть вытяни шею и подай лицо к камере. Изнутри кажется странно, а на фото подбородок чёткий"],["07","Три четверти","Поверни лицо немного в сторону от камеры, так видны скулы"],["44","Камера чуть выше","Камера чуть выше уровня глаз мягче к лицу, чем снизу"]]},
+ body:{h:"Фигура",l:[["09","Корпус под углом","Развернись к камере не прямо, а немного боком"],["18","Вес на дальнюю ногу","Перенеси вес на ногу дальше от камеры, а ближнюю чуть согни"],["33","Двигайся","Иди на камеру или разворачивайся. В движении тело выглядит свободнее, чем в стойке"]]},
+ look:{h:"Взгляд",l:[["36","Мимо камеры","Смотри в сторону, на свет, на предмет. Такой кадр выглядит живее, чем взгляд в упор"],["29","Перевод взгляда","Посмотри в сторону и медленно переведи взгляд в объектив, тут и ловится кадр"],["31","Думай о своём","Вспомни, что тебя радует. Взгляд перестаёт быть пустым"]]},
+ none:{h:"Для разнообразия",l:[["33","Движение","Пройди мимо камеры, как будто спешишь"],["20","Низкая точка","Сядь или ляг на пол, кадр сразу становится журнальным"],["43","Крупный план","Подойди ближе и закрой часть лица рукой или волосами"]]}
+};
+var F={
+ blog:{n:"Портретная съёмка",p:"5 000 ₽",l:["до 2 часов, 1-2 образа","40-80 фото в цветокоррекции","помогу с референсами, одеждой, локацией","готово через 14 дней"]},
+ fun:{n:"Портретная съёмка",p:"5 000 ₽",l:["до 2 часов, 1-2 образа","40-80 фото в цветокоррекции","помогу с референсами, одеждой, локацией","готово через 14 дней"]},
+ model:{n:"Концептуальная съёмка",p:"7 000 ₽",l:["до 4 часов, до 5 образов","концепция и мудборд вместе","50-90 фото с ретушью","готово через 20 дней"]},
+ brand:{n:"Лукбук или каталог для бренда",p:"3 000 ₽/час",l:["от 3 часов съёмки","до 10 фото каждого товара с ретушью","помогу с моделью и товаром на площадке","готово через 10 дней"]},
+ love:{n:"Свадьба / Love Story",p:"10 000 ₽",l:["до 10 часов, 1-2 образа","50-100 фото с лёгкой ретушью","шампанское и хрустальные бокалы в кадр","готово через 30 дней"]}
+};
+var i=0,ans={};
+function show(id){document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on')});document.getElementById(id).classList.add('on');window.scrollTo(0,0)}
+function start(){i=0;ans={};render();show('sq')}
+function render(){
+ var q=Q[i];document.getElementById('qn').textContent='Вопрос '+(i+1)+' из '+Q.length;
+ document.getElementById('qt').textContent=q.t;
+ document.getElementById('prog').style.width=(i/Q.length*100)+'%';
+ var o=document.getElementById('opts');o.innerHTML='';
+ q.o.forEach(function(x,k){var b=document.createElement('button');b.className='opt';b.innerHTML=x[0]+(x[1]?'<small>'+x[1]+'</small>':'');b.onclick=function(){pick(k)};o.appendChild(b)});
+}
+function pick(k){var a=Q[i].o[k][2];for(var key in a)ans[key]=a[key];i++;if(i<Q.length)render();else result()}
+function prev(){if(i>0){i--;render()}else show('s0')}
+function li(t){return '<li>'+t+'</li>'}
+function result(){
+ var aiOk=(ans.f=='fun'&&ans.w=='pic')||(ans.w=='pic'&&ans.n=='once'&&ans.ai=='good');
+ var rh,rd,why=[],whyh;
+ if(aiOk){
+  rh="Тебе хватит нейросети";
+  rd="Для твоей задачи живая съёмка не обязательна, и это нормально. Красивую картинку к празднику нейросеть сделает. Ниже позы: с ними и селфи, и фото для нейросети выйдут лучше";
+  whyh="Когда всё же нужен фотограф";
+  why=["Если захочешь, чтобы тебя узнавали на фото",WHY.emo,"Если нужны кадры для блога или бренда"];
+ }else{
+  rh="Тебе нужна живая съёмка";
+  rd="Нейросеть нарисует красивую картинку, но твоя задача про другое. Вот почему";
+  whyh="Почему не нейросеть";
+  why.push(ans.w=="pic" ? (ans.f=="brand"?WHY.thing:ans.f=="love"?WHY.emo:WHY.face) : WHY[ans.w]);
+  if(ans.ai=="notme")why.push("Ты уже видела это сама: нейросеть делает похожую, но не тебя");
+  if(ans.f=="brand"&&ans.w!="thing")why.push(WHY.thing);
+  if(ans.f=="love"&&ans.w!="emo")why.push(WHY.emo);
+  if((ans.f=="blog")&&ans.w!="face")why.push(WHY.face);
+  if(ans.n=="often")why.push("Для постоянного контента лучше одна съёмка с запасом кадров в одном стиле, чем каждый раз новая генерация, где ты выходишь разной");
+  why=why.filter(function(x,k){return why.indexOf(x)==k});
+  if(why.length<2)why.push("На живой съёмке я ставлю позы и собираю образ. Нейросеть ждёт, что ты всё это опишешь сама");
+ }
+ document.getElementById('rh').textContent=rh;document.getElementById('rd').textContent=rd;
+ document.getElementById('whyh').textContent=whyh;document.getElementById('why').innerHTML=why.map(li).join('');
+ var P=POSE[ans.p||'none'];
+ document.getElementById('poseh').textContent='3 позы под тебя от модели · '+P.h;
+ document.getElementById('poses').innerHTML=P.l.map(function(x){return '<div class="pose"><img src="img/'+x[0]+'.jpg" alt="" loading="lazy"><div><b>'+x[1]+'</b><span>'+x[2]+'</span></div></div>'}).join('');
+ document.getElementById('fmth').textContent=aiOk?'Если захочешь живые кадры':'Тебе подойдёт';
+ var p=F[ans.f||'blog'];
+ document.getElementById('pn').textContent=p.n;document.getElementById('pp').textContent=p.p;
+ document.getElementById('pl').innerHTML=p.l.map(li).join('');
+ show('sr');
+}
+</script>
+</body>
+</html>
